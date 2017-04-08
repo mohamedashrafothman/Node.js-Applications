@@ -1,0 +1,17 @@
+{
+  "name": "simpleserver",
+  "version": "1.0.0",
+  "description": "very simple server application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "server",
+    "application"
+  ],
+  "author": "mohamed ashraf",
+  "license": "ISC"
+}
