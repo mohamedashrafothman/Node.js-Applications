@@ -5,3 +5,14 @@
 	margin-top: 180px;
 	font-size: 82px;
 }
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.navbar{
+	border-radius: 0px;
+}
+.serachContainer{
+	margin-top: 100px;
+}
