@@ -1,0 +1,17 @@
+.navbar{
+	border-radius: 0px;
+}
+input{
+	width: 100%;
+	height: 100px !important;
+}
+button{
+	margin-top: 50px;
+}
+.list-item:hover{
+    text-decoration: line-through;
+    cursor: pointer;
+}
+.well{
+	border-radius: 10px;
+}

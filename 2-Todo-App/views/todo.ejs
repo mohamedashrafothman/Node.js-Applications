@@ -1,0 +1,28 @@
+<% include partials/header %>
+
+	<div class="container">
+		<form action="/" class="form-horizental" method="POST">
+			<fieldset>
+				<div class="form-group col-xs-9">
+					<input type="text" class="col-xs-12 form-control" placeholder="Enter Items todo">
+				</div>
+				<div class="col-xs-1"></div>
+				<div class="form-group col-xs-2">
+					<button type="submit" class="btn btn-primary btn-lg col-xs-12">Submit</button>
+				</div>
+			</fieldset>
+		</form>
+
+		<div>
+			<%if(todos){%>
+				<%Object.keys(todos).forEach(function(item){%>
+					<div class="well list-item">
+						<h1><%= todos[item].item %></h1>
+					</div>
+				<%});%>
+			<%}%>
+
+		</div>
+	</div>
+
+<% include partials/footer %>
