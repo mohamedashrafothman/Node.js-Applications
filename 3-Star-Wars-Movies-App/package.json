@@ -1,0 +1,21 @@
+{
+  "name": "3-star-wars-movie-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "star",
+    "war",
+    "movie",
+    "app"
+  ],
+  "author": "mohamed ashraf",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.2"
+  }
+}

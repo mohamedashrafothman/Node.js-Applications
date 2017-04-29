@@ -9,7 +9,7 @@ $(document).ready(function(){
 			method:'POST',
 			url: '/',
 			data: todo[0],
-			success: function(){
+			success: function(data){
 				 location.reload();
 			}
 		});
