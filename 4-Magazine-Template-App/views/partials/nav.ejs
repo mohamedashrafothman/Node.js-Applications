@@ -1,0 +1,53 @@
+<nav id="nav">
+    <div class="container-fluid">
+        <a href="#" id="nav-icon"><span class="lnr lnr-menu"></span></a>
+        <div id="side-menu">
+            <a href="#" id="close-side-menu"><span class="lnr lnr-cross"></span></a>
+            <div class="row">
+                <div class="col-lg-6 col-xs-12" id="about-me">
+                    <img src="/images/<%= portfolio.image%>" alt="Avatar" class="img-responsive avatar">
+                    <h5>about me</h5>
+                    <h3><%= portfolio.name %></h3>
+                    <p>
+                        <%= portfolio.bio %>
+                    </p>
+                    <ul id="socials-nav-right">
+                        <% for(let i=0 ; i<portfolio.links.length ; i++ ){%>
+                            <li><a href="https://www.<%=portfolio.links[i]%>.com"><i class="fa fa-<%=portfolio.links[i]%>"></i></a></li>
+                        <%}%>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-xs-12" id="search-and-links">
+                    <div id="tags">
+                        <h4>categories</h4>
+                        <ul>
+                            <li><a href="#">Travel</a></li>
+                            <li><a href="#">Style</a></li>
+                            <li><a href="#">photography</a></li>
+                            <li><a href="#">food & drinks</a></li>
+                            <li><a href="#">culture</a></li>
+                        </ul>
+                    </div>
+                    <form action="">
+                        <h4>search</h4>
+                        <div class="form-group">
+                            <input type="text" placeholder="type a keyword">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-5 col-xs-offset-4 text-center" id="nav-center">
+                <a href="/">Magazine <sup>TM</sup></a>
+            </div>
+            <div class="col-md-3 hidden-sm hidden-xs">
+                <ul id="socials-nav-right">
+                <li><a href="https://www.facebook.com"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.twitter.com"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</nav>

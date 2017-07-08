@@ -6,7 +6,7 @@ var port = process.env.PORT || 8000;
 
 // setup view engine
 app.set('view engine', 'ejs');
-app.set('views',path.join(__dirname, '/views'))
+app.set('views',path.join(__dirname, '/views'));
 
 //  Midelwares
 app.use('/assets', express.static(path.join(__dirname, '/public')));

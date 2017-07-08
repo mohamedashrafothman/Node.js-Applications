@@ -1,0 +1,121 @@
+<% include partials/header %>
+
+<article id="article">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="article-head" class="col-xs-8 col-xs-offset-2">
+                <a href="/single_article/<%= article.article_number%>"><img src="/images/<%= article.poster%>" class="image-responsive wow fadeInUp" data-wow-duration="1s" alt=""></a>
+                <p class="tag wow fadeInUp" data-wow-duration="1s"><%= article.tag_name%></p>
+                <a href="/single_article/<%= article.article_number%>"><h2 class="article-heading wow fadeInUp" data-wow-duration="1s"><%= title %></h2></a>
+                <span class="date wow fadeInUp" data-wow-duration="1s"><%= article.date.month%> <%= article.date.day%>th, <%= article.date.year%></span>
+            </div>
+        </div> <!-- article head ends -->
+
+        <div class="row">
+            <div class="article-content col-xs-8 col-xs-offset-2" id="content-1">
+                <div class="col-md-7 col-xs-12 wow fadeInUp" data-wow-duration="1s">
+                    <% for(let i=0 ; i<article.paragraphs.length ; i++){ %>
+                        <p class="p-style">
+                            <%= article.paragraphs[i] %>
+                        </p>
+                    <%}%>
+                </div>
+                <div class="col-md-4 col-xs-12 heighlight wow fadeInUp" data-wow-duration="1s">
+                    <h5><%= article.heightlight.title %></h5>
+                    <p><%= article.heightlight.heighlight_paragraph %></p>
+                </div>
+            </div>
+        </div> <!-- first content ends -->
+
+        <div class="row">
+            <div class="article-content col-xs-8 col-xs-offset-2 wow fadeInUp" id="blockquote" data-wow-duration="1s">
+                <blockquote>
+                    <p>“ <%= article.quote.quote_content%> ”
+                    <br>
+                    <cite>— <%= article.quote.author%></cite></p>
+                </blockquote>
+            </div>
+        </div> <!-- Blockquote ends -->
+
+        <div class="row">
+            <div class="article-content col-xs-8 col-xs-offset-2" id="content-3">
+                <div class="col-md-6 col-xs-12 wow fadeInUp paragraph-img" data-wow-duration="1s" >
+                    <img src="/images/<%= article.article_images.images[0]%>" alt="" class="img-responsive">
+                    <p class="img-desc"><%= article.article_images.images_description[0]%></p>
+                </div>
+                <div class="col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="1s">
+                    <% for(let i=0 ; i<article.paragraphs.length ; i++){ %>
+                        <p class="p-style">
+                            <%= article.paragraphs[i] %>
+                        </p>
+                    <%}%>
+                </div>
+            </div>
+        </div> <!-- third content ends -->
+
+        <div class="row">
+            <div class="article-content col-xs-8 col-xs-offset-2" id="content-3">
+                <div class="col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="1s">
+                    <% for(let i=0 ; i<article.paragraphs.length ; i++){ %>
+                        <p class="p-style">
+                            <%= article.paragraphs[i] %>
+                        </p>
+                    <%}%>
+                </div>
+                <div class="col-md-6 col-xs-12 wow fadeInUp paragraph-img" data-wow-duration="1s" >
+                    <img src="/images/<%= article.article_images.images[1]%>" alt="" class="img-responsive">
+                    <p class="img-desc"><%= article.article_images.images_description[1]%></p>
+                </div>
+            </div>
+        </div> <!-- fourth content ends -->
+
+         <div class="row">
+            <div class="article-content col-xs-8 col-xs-offset-2 content-5">
+                <div class="wow fadeInUp" data-wow-duration="1s">
+                    <h2>Pointing has no control about the blind texts</h2>
+                    <% for(let i=0 ; i<article.paragraphs.length ; i++){ %>
+                        <p class="p-style">
+                            <%= article.paragraphs[i] %>
+                        </p>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="container">
+                <%for(let i=0 ; i< 3 ; i++){%>
+                    <div class="col-md-4 col-sm-4 ">
+                        <img src="/images/<%= article.article_images.images[i] %>" alt="" class="helper-imgs img-responsive wow fadeInUp" data-wow-duration="0.5s">
+                        <p class="img-desc"><%= article.article_images.images_description[i] %></p>
+                    </div>
+                <%}%>
+            </div>
+        </div>
+
+        <div class="row">
+           <div class="article-content col-xs-8 col-xs-offset-2 content-5">
+               <div class="wow fadeInUp" data-wow-duration="1s">
+                   <h2>Pointing has no control about the blind texts</h2>
+                   <% for(let i=0 ; i<article.paragraphs.length ; i++){ %>
+                       <p class="p-style">
+                           <%= article.paragraphs[i] %>
+                       </p>
+                   <%}%>
+               </div>
+           </div>
+       </div>
+
+
+
+
+        <a href="/single_article/<%= article.article_number+1%>" class="next-article">
+            <span>next<span class="lnr lnr-chevron-right"></span></span>
+        </a>
+        <a href="/single_article/<%= article.article_number-1%>" class="prev-article">
+            <span><span class="lnr lnr-chevron-left"></span>prev</span>
+        </a>
+    </div>
+</article>
+
+<% include partials/footer %>

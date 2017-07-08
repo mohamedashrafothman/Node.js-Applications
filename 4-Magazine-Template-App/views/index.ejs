@@ -1,0 +1,19 @@
+<% include partials/header %>
+
+<section id="articles">
+    <div class="container-fluid">
+        <div class="row">
+            <% for(let i=0 ; i<articles.length ; i++){ %>
+                <div class="col-md-3 col-xs-6 text-center article wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                    <a href="/single_article/<%= articles[i].article_number%>"><img src="/images/<%= articles[i].poster%>"class="image-responsive" alt=""></a>
+                    <p class="tag"><%=articles[i].tag_name %></p>
+                    <a href="/single_article/<%= articles[i].article_number%>"><h2 class="article-heading"><%= articles[i].title %></h2></a>
+                    <span class="date"><%= articles[i].date.month%> <%= articles[i].date.day%>th, <%= articles[i].date.year%></span>
+                </div>
+            <%}%>
+        </div>
+    </div>
+</section>
+
+
+<% include partials/footer %>
