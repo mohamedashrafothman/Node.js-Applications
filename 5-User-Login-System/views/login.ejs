@@ -1,0 +1,21 @@
+<% include partials/header %>
+        <div class="jumbotron">
+
+            <div class="container">
+                <h1><%= title %></h1>
+                <p>please login using the form below</p>
+                <hr>
+                <form action="/user/login" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label><h5>Username</h5></label>
+                        <input type="text" name="username" placeholder="Enter your Username." class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label><h5>Password</h5></label>
+                        <input type="text" name="password" placeholder="Enter your Password." class="form-control">
+                    </div>
+                    <input type="submit" name="submit" value="Login" class="btn btn-primary  ">
+                </form>
+            </div>
+        </div>
+<% include partials/footer %>
