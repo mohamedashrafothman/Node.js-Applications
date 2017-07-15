@@ -7,21 +7,22 @@
   },
   "dependencies": {
     "body-parser": "~1.17.1",
+    "connect-flash": "*",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
+    "ejs-lint": "^0.3.0",
     "express": "~4.15.2",
-    "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
     "mongodb": "*",
     "mongoose": "*",
-    "connect-flash": "*",
-    "express-validator": "*",
-    "express-session": "*",
-    "express-messages": "*",
+    "morgan": "~1.8.1",
+    "multer": "*",
     "passport": "*",
-    "passport-local": "*",
     "passport-http": "*",
-    "multer": "*"
+    "passport-local": "*",
+    "serve-favicon": "~2.4.2"
   }
 }
