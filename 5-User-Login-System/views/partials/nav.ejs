@@ -4,14 +4,20 @@
       <a class="navbar-brand" href="/">Login System</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li <% if (title === 'Members') { %>class="active" <% } %> ><a href="/">Members</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li <% if (title === 'Register') { %>class="active" <% } %> ><a href="/users/register">Regester</a></li>
-        <li <% if (title === 'Login') { %>class="active" <% } %> ><a href="/users/login">Login</a></li>
-        <li <% if (title === 'Logout') { %>class="active" <% } %> ><a href="/users/logout">Logout</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <%if(!user){%>
+                <li <% if (title === 'Login') { %>class="active" <% } %> ><a href="/users/login">Login</a></li>
+                <li <% if (title === 'Register') { %>class="active" <% } %> ><a href="/users/register">Regester</a></li>
+            <%};%>
+            <%if(user){%>
+                <li <% if (title === 'Home Page') { %>class="active" <% } %> ><a href="/">Home Page</a></li>
+
+                <li <% if (title === 'Logout') { %>class="active" <% } %> ><a href="/users/logout">Logout</a></li>
+            <%}%>
+        </ul>
     </div><!--/.nav-collapse -->
   </div>
 </nav>
+<div class="container message">
+    <%- messages() %>
+</div>

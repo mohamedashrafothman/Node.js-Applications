@@ -5,3 +5,28 @@ body {
 a {
   color: #00B7FF;
 }
+ul.success , ul.info , ul.error {
+    position: fixed;
+    right: 0px;
+    top: 50px;
+    display: none;
+}
+ul.success li, ul.info li, ul.error li{
+    margin: 20px 0px 20px -40px ;
+    padding: 15px 100px 15px 15px;
+    border: 1px solid transparent;
+    list-style: none;
+    border-radius: 5px 0px 0px 5px;
+
+}
+ul.success li{
+    color: #3c763d;
+    background: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+ul.info li{
+    color: #31708f;
+    background: #d9edf7;
+    border-color: #bce8f1;
+}

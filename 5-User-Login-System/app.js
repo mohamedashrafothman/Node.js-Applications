@@ -13,7 +13,7 @@ const multer            = require('multer');
 const flash             = require('connect-flash');
 const mongo             = require('mongodb');
 const mongoose          = require('mongoose');
-const db                = mongoose.connection;
+// const db                = mongoose.connection;
 
 const index             = require('./routes/index');
 const users             = require('./routes/users');
@@ -73,14 +73,15 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get('*', (req, res, next)=> {
+    res.locals.user = req.user || null;
+    next();
+});
 app.use('/', index);
 app.use('/users', users);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  res.render('notfound', {title: 'Not Found'});
 });
 
 // error handler
