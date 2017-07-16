@@ -13,16 +13,6 @@ router.get('/login', (req, res, next)=> {
   res.render('login', {title: 'Login'});
 });
 
-router.get('/logout', (req, res)=> {
-    req.logout();
-    req.flash('success', 'you have logged out');
-    res.redirect('/users/login');
-});
-
-router.get('/register', (req, res, next)=> {
-  res.render('register', {title: 'Register', errors: false});
-});
-
 passport.serializeUser((user, done)=> {
     done(null, user.id);
 });
@@ -57,6 +47,15 @@ router.post('/login', passport.authenticate('local', {failureRedirect:'/users/lo
     console.log('Authenication Successful');
     req.flash('success', 'You are logged in');
     res.redirect('/');
+});
+router.get('/logout', (req, res)=> {
+    req.logout();
+    req.flash('success', 'you have logged out');
+    res.redirect('/users/login');
+});
+
+router.get('/register', (req, res, next)=> {
+  res.render('register', {title: 'Register', errors: false});
 });
 router.post('/register', (req, res, next)=> {
     // get form variables
