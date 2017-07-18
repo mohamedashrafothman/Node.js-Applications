@@ -8,7 +8,7 @@
             <%if(!user){%>
                 <li <% if (title === 'Login') { %>class="active" <% } %> ><a href="/users/login">Login</a></li>
                 <li <% if (title === 'Register') { %>class="active" <% } %> ><a href="/users/register">Regester</a></li>
-            <%};%>
+            <%}%>
             <%if(user){%>
                 <li <% if (title === 'Home Page') { %>class="active" <% } %> ><a href="/">Home Page</a></li>
                 <li <% if (title === 'Logout') { %>class="active" <% } %> ><a href="/users/logout">Logout</a></li>

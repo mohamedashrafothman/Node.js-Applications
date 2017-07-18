@@ -13,7 +13,6 @@ const multer            = require('multer');
 const flash             = require('connect-flash');
 const mongo             = require('mongodb');
 const mongoose          = require('mongoose');
-// const db                = mongoose.connection;
 
 const index             = require('./routes/index');
 const users             = require('./routes/users');
@@ -24,8 +23,16 @@ const app               = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Multer midelware
-app.use(multer({dest:__dirname+'/uploads/'}).any());
+// multer uploading files Middelware
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, './public/uploads/');
+  },
+  filename(req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+app.use(multer({storage: storage}).single('avatar'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -34,10 +41,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // sessions medelware
-app.use( session({
+app.use(session({
     saveUninitialized : true,
     secret : 'Some Secret' ,
-    resave : true,
+    resave : true
 }));
 
 // passport medelware
@@ -46,7 +53,7 @@ app.use(passport.session());
 
 // Validator medelware
 app.use(expressValidator({
-    errorFormatter: function(param, msg, value) {
+    errorFormatter(param, msg, value) {
         var namespace = param.split('.'), root = namespace.shift(), formParam = root;
 
         while(namespace.length) {
@@ -62,13 +69,14 @@ app.use(expressValidator({
 
 
 app.use(cookieParser());
+// serve public files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // connect-flash medelware
 app.use(flash());
 
 // express-messages medelware
-app.use(function (req, res, next) {
+app.use((req, res, next)=> {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
@@ -80,12 +88,12 @@ app.get('*', (req, res, next)=> {
 app.use('/', index);
 app.use('/users', users);
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next)=> {
   res.render('notfound', {title: 'Not Found'});
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next)=> {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

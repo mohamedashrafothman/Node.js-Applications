@@ -1,10 +1,12 @@
 const express           = require('express');
+const path              = require('path');
 const passport          = require('passport');
 const localStrategy     = require('passport-local').Strategy;
+const multer            = require('multer');
 const User              = require('../models/user');
 const router            = express.Router();
 
-
+// Routes
 router.get('/', (req, res, next)=> {
   res.render('users', {title: 'Users'});
 });
@@ -57,39 +59,35 @@ router.get('/logout', (req, res)=> {
 router.get('/register', (req, res, next)=> {
   res.render('register', {title: 'Register', errors: false});
 });
+
+
+
 router.post('/register', (req, res, next)=> {
     // get form variables
-    var name        = req.body.name;
-    var email       = req.body.email;
-    var username    = req.body.username;
-    var password    = req.body.password;
-    var password2   = req.body.password2;
-    // profile Image
-    var profileImageOriginalName;
-    var profileImageName;
-    var profileImageMime;
-    var profileImagePath;
-    var profileImageExt;
-    var profileImageSize;
+    var name                = req.body.name;
+    var email               = req.body.email;
+    var username            = req.body.username;
+    var password            = req.body.password;
+    var password2           = req.body.password2;
 
-    console.log(req.body.profile_image);
     // chek for image filed
-    if(req.files.profile_image){
+    if(req.file){
         console.log('Uploading File...');
-        profileImageOriginalName    = req.files.profile_image;
-        profileImageName            = req.files.profile_image.name;
-        profileImageMime            = req.files.profile_image.mimetype;
-        profileImagePath            = req.files.profile_image.path;
-        profileImageExt             = req.files.profile_image.extension;
-        profileImageSize            = req.files.profile_image.size;
-    } else  {
-        profileImageName = 'noimage.png';
+        var profileImageOriginalName    = req.file.originalname;
+        var profileImageName            = req.file.filename;
+        var profileImageMime            = req.file.mimetype;
+        var profileImagePath            = req.file.path;
+        var profileImageExt             = req.file.ext;
+        var profileImageSize            = req.file.size;
+    }else{
+        var profileImageName    = 'avatar-1500394316835.jpg';
     }
 
+    // Form Validator
     req.checkBody('name', 'Name Field is required').notEmpty();
     req.checkBody('email', 'Email Field is required').notEmpty();
     req.checkBody('email', 'Email Not Valid').isEmail();
-    req.checkBody('username', 'UserName Field is required').notEmpty();
+    req.checkBody('username', 'Username Field is required').notEmpty();
     req.checkBody('password', 'Password Field is required').notEmpty();
     req.checkBody('password2', 'Passwords Not match').equals(req.body.password);
 
@@ -99,12 +97,12 @@ router.post('/register', (req, res, next)=> {
             var errors = result.array();
             res.render('register', {
                 title: 'Register',
+                user: false,
                 errors: errors,
                 name: name,
                 email: email,
                 username: username,
-                password: password,
-                password2: password2
+                password: password
             });
         } else {
             var newUser = new User({
@@ -114,7 +112,6 @@ router.post('/register', (req, res, next)=> {
                 password: password,
                 profileImage: profileImageName
             });
-
             //create Users
             User.createUser(newUser, (error, user)=> {
                 if(error) throw error;

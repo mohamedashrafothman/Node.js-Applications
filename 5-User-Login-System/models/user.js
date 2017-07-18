@@ -1,5 +1,4 @@
 const mongoose  = require('mongoose');
-// const db = mongoose.connection;
 const bcrypt    = require('bcrypt');
 const Schema    = mongoose.Schema;
 
@@ -7,7 +6,6 @@ mongoose.Promise = global.Promise;
 
 // connect to the database
 mongoose.connect('mongodb://localhost/nodeauth');
-
 
 // User Schema
 const UserSchema = new Schema({
@@ -38,7 +36,6 @@ module.exports.comparePassword = (candidatePassword, hash, callback)=> {
     bcrypt.compare(candidatePassword, hash, (err, isMatch)=> {
         if(err) return callback(err);
         callback(null, isMatch);
-
     });
 };
 
