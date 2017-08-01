@@ -1,0 +1,24 @@
+extends layout.pug
+
+block content
+	.inner
+		h2 ##{tag || 'Tags'}
+		ul.tags
+			each t in tags
+				li.tag
+					a.tag__link(href=("/tags/"+t._id) class=((t._id === tag) ? "tag__link--active" : ""))
+						span.tag__text ##{t._id}
+						span.tag__count #{t.count}
+		.stores
+			each store in stores
+				.store
+					.store__hero
+						.store__actions
+							.store__action.store_action--edit
+								a(href="/stores/"+store._id+'/edit')
+									!= h.icon('pencil')
+						img(src= store.photo ? '/uploads/'+store.photo : '/uploads/store.png')
+						h2.title
+							a(href='/store/'+store.slug) #{store.name}
+					.store__details
+						p= store.description.split(' ').slice(0, 25).join(' ')

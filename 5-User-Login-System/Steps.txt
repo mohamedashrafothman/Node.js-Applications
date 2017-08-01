@@ -1,0 +1,20 @@
+Process that i follow to make this proejct:
+==========================================
+
+	[1] Create User To The DataBase
+		= create a form within the view.
+		= create route that will process the forms post request.
+		= create a database connection to mongodb by using mongoose.
+		= grap form inputs and insert it into the database.
+		= add express validation package.
+		= validate user inputs on backend.
+		= install bcrypt package and hash out user's password.
+		= store user to the database.
+
+	[2] Login User ( Update user session, return auth cookies ).
+		= install passport.
+		= confirmpassport with localstorage.
+
+	[3] Protect Routes And Only Peruit Entry With Authorization cokkie.
+
+	[4] Create Logout Button and Logout Page.

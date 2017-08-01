@@ -1,0 +1,61 @@
+extends layout.pug
+
+block content
+
+	if store
+		//- Edit Store That Already Exist
+		.inner
+			h1 #{title}
+			form(action=("/add/"+store.id) method="POST" class="card" enctype="multipart/form-data")
+				label(for="name") Name
+				input(type="text" name="name" value=store.name)
+				label(for="description") Description
+				textarea(name="description")= store.description
+				label(for="photo") Photo
+				input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+				if store.photo 
+					img(src=("/uploads/"+store.photo) alt=store.name)
+				//- address, lng and lat
+				label(for="address") Address
+				input(type="text" id="address" name="location[address]" value=(store.location && store.location.address))
+				label(for="lng") Address Lng
+				input(type="text" id="lng" name="location[coordinates][0]" value=(store.location && store.location.coordinates[0]) required)
+				label(for="lat") Address lat
+				input(type="text" id="lat" name="location[coordinates][1]" value=(store.location && store.location.coordinates[1]) required)
+				- const choices = ['Wifi', 'Open_Late', 'Family_Friendly', 'Vegatarian', 'Licensed']
+				- const tags = store.tags || []
+				ul.tags
+					each choise in choices
+						.tag.tag__choice
+							input(type="checkbox" id=choise value=choise name="tags" checked=(tags.includes(choise) ? true : false))
+							label(for="choise") #{choise}
+				input(type="submit" value="save ➡" class="button")
+
+					
+	else
+		//- Add New Store
+		.inner
+			h1 #{title}
+			form(action="/add" method="POST" class="card" enctype="multipart/form-data")
+				label(for="name") Name
+				input(type="text" name="name")
+				label(for="name") Description
+				textarea(name="description")
+				label(for="photo") Photo
+				input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+
+				//- address, lng and lat
+				label(for="address") Address
+				input(type="text" id="address" name="location[address]")
+				label(for="lng") Address Lng
+				input(type="text" id="lng" name="location[coordinates][0]")
+				label(for="lng") Address lat
+				input(type="text" id="lat" name="location[coordinates][1]")
+
+				- const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegatarian', 'Licensed'];
+				ul.tags
+					each choise in choices
+						.tag.tag__choice
+							input(type="checkbox" id=choise value=choise name="tags")
+							label(for="choise") #{choise}
+				input(type="submit" value="save ➡" class="button")
