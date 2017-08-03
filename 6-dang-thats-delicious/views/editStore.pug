@@ -5,8 +5,9 @@ block content
 	if store
 		//- Edit Store That Already Exist
 		.inner
-			h1 #{title}
-			form(action=("/add/"+store.id) method="POST" class="card" enctype="multipart/form-data")
+			h1 Edit Store
+			form.form(action=("/add/"+store.id) method="POST" class="card" enctype="multipart/form-data")
+				h2 #{title}
 				label(for="name") Name
 				input(type="text" name="name" value=store.name)
 				label(for="description") Description
@@ -36,7 +37,8 @@ block content
 		//- Add New Store
 		.inner
 			h1 #{title}
-			form(action="/add" method="POST" class="card" enctype="multipart/form-data")
+			form.form(action="/add" method="POST" class="card" enctype="multipart/form-data")
+				h2 #{title}
 				label(for="name") Name
 				input(type="text" name="name")
 				label(for="name") Description
@@ -52,7 +54,7 @@ block content
 				label(for="lng") Address lat
 				input(type="text" id="lat" name="location[coordinates][1]")
 
-				- const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegatarian', 'Licensed'];
+				- const choices = ['Wifi', 'Open_Late', 'Family_Friendly', 'Vegatarian', 'Licensed'];
 				ul.tags
 					each choise in choices
 						.tag.tag__choice

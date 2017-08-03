@@ -2,10 +2,17 @@ extends layout.pug
 
 block content
 	.inner
-		form.form(action:"/login" method="POST")
+		h2 #{title}
+		form.form(action="/login" method="POST")
 			h2 Login
 			label(for="email") Email
 			input(type="email" name="email")
 			label(for="password") Password
 			input(type="password" name="password")
 			input.button(type="submit" value="Log In ➡")
+
+		form.form(action="/account/forgot" method="POST")
+			h2 Forgot Password?
+			label(for="email") Email
+			input(type="email" name="email")
+			input.button(type="submit" value="Send a Reset ➡")
