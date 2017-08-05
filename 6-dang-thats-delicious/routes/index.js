@@ -41,7 +41,7 @@ router.post('/register', userContoller.validateRegister, catchErrors(userContoll
 router.get('/logout', authController.logout);
 router.get('/account', authController.isLoggedIn, userContoller.account);
 router.post('/account', userContoller.updateAccount);
-router.post('/account/forgot', authController.forgot);
+router.post('/account/forgot', catchErrors(authController.forgot));
 router.get('/account/reset/:token', authController.reset);
 router.post('/account/reset/:token', authController.confirmedPasswords, catchErrors(authController.update));
 
