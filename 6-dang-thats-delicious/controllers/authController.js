@@ -29,7 +29,7 @@ const isLoggedIn = (req, res, next)=> {
 };
 
 const forgot = async (req, res)=> {
-	// 1- see ig a user with that email exist
+	// 1- see id a user with that email exist
 	// 2- set reset token and expiry on their account
 	// 3- send them an email with the token 
 	// 4- redirect to loign page

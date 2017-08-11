@@ -8,9 +8,10 @@ block content
 				.store
 					.store__hero
 						.store__actions
-							.store__action.store_action--edit
-								a(href="/stores/"+store._id+'/edit')
-									!= h.icon('pencil')
+							if user && store.author.equals(user._id)
+								.store__action.store_action--edit
+									a(href="/stores/"+store._id+'/edit')
+										!= h.icon('pencil')
 						img(src= store.photo ? '/uploads/'+store.photo : '/uploads/store.png')
 						h2.title
 							a(href='/store/'+store.slug) #{store.name}
