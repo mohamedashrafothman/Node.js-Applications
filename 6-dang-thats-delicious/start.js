@@ -25,6 +25,7 @@ mongoose.connection.once('open', ()=> {
 // import all of the models
 require('./models/store');
 require('./models/user');
+require('./models/review');
 
 // Start our app!
 const app = require('./app');

@@ -56,9 +56,16 @@ const storeSchema = new Schema({
 		ref: 'User',
 		required: 'You must supply an author'
 	}
+}, {
+	toJSON: {virtual: true},
+	toObject: {virtual: true}
 });
 
+
 // defind our indexes
+// storeSchema.index({
+// 	'location': '2dsphere'
+// });
 storeSchema.index({
 	name: 'text',
 	description: 'text'
@@ -89,6 +96,14 @@ storeSchema.statics.getTagsList = function(){
 		{ $sort: {count: -1} }
 	]);
 };
+
+// this piece of code means: find reviews where the
+// stores _id property === reviews store prop propity
+storeSchema.virtual('reviews', {
+	ref: 'Review', // what model to link?
+	localField: '_id', // which field on the store?
+	foreignField: 'store' // which field on the view?
+});
 
 // exporting store's module.
 module.exports = mongoose.model('Store', storeSchema);

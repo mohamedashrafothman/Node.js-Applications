@@ -670,7 +670,7 @@ label {
   margin-bottom: 2rem;
   padding: 2rem;
   position: relative;
-  z-index: 1;
+  z-index:  1;
   border-radius: 3px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1138,10 +1138,11 @@ label {
   border: 0;
   outline: 0;
   position: relative;
+  cursor: pointer;
 }
 .heart__button:after {
-  content: '♥️';
-  font-size: 20px;
+  content: '❤';
+  font-size: 28px;
   position: absolute;
   opacity: 0;
   top: 0;
@@ -1154,8 +1155,9 @@ label {
   fill: red;
 }
 .heart__button--float:after {
-  -webkit-animation: fly 2.5s 1 ease-out;
-          animation: fly 2.5s 1 ease-out;
+  color: red;
+  -webkit-animation: fly 2.5s 1 ease-in-out;
+          animation: fly 2.5s 1 ease-in-out;
 }
 
 @-webkit-keyframes fly {

@@ -27,7 +27,7 @@ function autocomplete(input, latInput, lngInput){
 	input.on('keydown', (e)=> {
 		if(e.keyCode === 13) e.preventDefault();
 	});
-};
+}
 autocomplete($('#address'), $('#lat'), $('#lng'));
 
 function searchResultsHTML(stores) {
@@ -38,7 +38,7 @@ function searchResultsHTML(stores) {
 			</a>
 		`;
 	}).join('');
-};
+}
 
 function typeAhead(search){
 	if(!search) return;
@@ -97,10 +97,26 @@ function typeAhead(search){
 			current.classList.remove(activeClass);
 		}
 		next.classList.add(activeClass);
-
-
 	});
+}
+
+const heartForms = $$('form.heart');
+heartForms.on('submit', ajaxHeart);
+
+function ajaxHeart(e){
+	e.preventDefault();
+	axios
+		.post(this.action)
+		.then((res)=> {
+			const isHearted = this.heart.classList.toggle('heart__button--hearted');
+			$('.heart-count').textContent = res.data.hearts.length;
+			if(isHearted){
+				this.heart.classList.add('heart__button--float');
+				setTimeout(()=> this.heart.classList.remove('heart__button--float'), 25000);
+			}
+		})
+		.catch(console.error);
+}
 
 
-};
 typeAhead($('.search'));

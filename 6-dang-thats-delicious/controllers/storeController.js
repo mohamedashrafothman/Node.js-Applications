@@ -12,6 +12,7 @@ const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
 const Store = mongoose.model('Store');
+const User = mongoose.model('User');
 const multerOptins = {
 	storage: multer.memoryStorage(),
 	fileFilter(req, file, next){
@@ -136,7 +137,7 @@ const updateStore = (req, res)=> {
 };
 
 const getStoreBySlug = (req, res)=> {
-	const store = Store.findOne({slug: req.params.slug}).populate('author').then((result)=> {
+	const store = Store.findOne({slug: req.params.slug}).populate('author reviews').then((result)=> {
 		if(!result) return next();
 		res.render('store', {
 			store: result,
@@ -169,6 +170,41 @@ const searchStores = (req, res)=> {
 	});
 };
 
+// const mapStores = async (req, res)=> {
+// 	const stores = await Store.find({
+// 		location: {
+// 			$near: {
+// 				$geometry: { 
+// 					type: "Point", 
+// 					coordinates: [Number(req.query.lng), Number(req.query.lat)]
+// 				},
+// 				$maxDistance: 10000
+// 			}
+// 		}
+// 	}).select('slug name description location').limit(10);
+// 	res.json(stores);
+// };
+
+const heartStore = async (req, res)=> {
+	const hearts = req.user.hearts.map((obj)=> obj.toString());
+	const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet';
+	const user = await User.findByIdAndUpdate(
+		req.user._id, 
+		{ [operator]: {hearts: req.params.id} }, 
+		{new: true}
+	);
+	res.json(user);
+};
+
+const getHearts = async (req, res)=> {
+	const stores = await Store.find({
+		_id: {$in: req.user.hearts}
+	});
+	res.render('stores', {
+		title: 'Hearted Stores',
+		stores
+	});
+};
 
 module.exports = {
 	homePage,
@@ -181,5 +217,9 @@ module.exports = {
 	updateStore,
 	getStoreBySlug,
 	getStoresByTag,
-	searchStores
+	searchStores,
+	heartStore,
+	getHearts
+	
+	// mapStores
 };
