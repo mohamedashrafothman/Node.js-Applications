@@ -19,8 +19,6 @@ mongoose.connection.once('open', ()=> {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 
-// READY?! Let's go!
-
 
 // import all of the models
 require('./models/store');
@@ -29,7 +27,11 @@ require('./models/review');
 
 // Start our app!
 const app = require('./app');
-app.set('port', process.env.PORT || 8888);
-const server = app.listen(app.get('port'), () => {
-  console.log(`Express running → PORT ${server.address().port}`);
+// app.set('port', process.env.PORT || 8888);
+// const server = app.listen(app.get('port'), () => {
+//   console.log(`Express running → PORT ${server.address().port}`);
+// });
+const port = process.env.PORT || 8888;
+app.listen(port , ()=>{
+  console.log(`Express running → PORT ${port}`);
 });

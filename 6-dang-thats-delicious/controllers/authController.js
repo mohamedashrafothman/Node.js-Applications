@@ -1,10 +1,10 @@
-const passport = require('passport');
+const passport  = require('passport');
 // crypto is a nodejs core module
-const crypto = require('crypto');
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const crypto    = require('crypto');
+const mongoose  = require('mongoose');
+const User      = mongoose.model('User');
 const promisify = require('es6-promisify'); 
-const mail = require('../handlers/mail.js');
+const mail      = require('../handlers/mail.js');
 
 const login = passport.authenticate('local', {
 	failureRedirect: '/login',
@@ -15,7 +15,7 @@ const login = passport.authenticate('local', {
 
 const logout = (req, res)=> {
 	req.logout();
-	req.flash('success', 'You are now logged out 👋');
+	req.flash('success', 'You are now logged out, get back soon 👋');
 	res.redirect('/');
 };
 

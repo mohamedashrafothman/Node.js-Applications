@@ -99,6 +99,7 @@ const createStore = (req, res)=> {
 
 const getStores = (req, res)=> {
 	const stores = Store.find().then((result)=> {
+		console.log(res);
 		res.render('stores', {title: 'Stores', stores: result});
 	});
 };
