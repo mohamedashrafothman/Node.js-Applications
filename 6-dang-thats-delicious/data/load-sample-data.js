@@ -29,7 +29,7 @@ async function loadData() {
   try {
     await Store.insertMany(stores);
     await User.insertMany(users);
-z    await Review.insertMany(reviews);
+    await Review.insertMany(reviews);
     console.log('👍👍👍👍👍👍👍👍 Done!');
     process.exit();
   } catch (e) {

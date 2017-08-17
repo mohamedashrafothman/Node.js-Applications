@@ -1,8 +1,26 @@
 ## What is this?
 
-Just you wait folks!
+This is my own project following the wesbos - Learn Node.JS course.
 
-## Sample Data
+## To make it work on your machine
+
+1- you need Node.JS v7.0.0 or above installed on your own computer.
+2- you need MongoDB v3.0.0 or above installed on your own computer.
+3- clone this repo.
+4- open your terminal in the project folder then run
+```bash
+npm install
+```
+this line will install all needed packages for you to make the project work.
+5- after installing all project's dependencies run this command in your terminal
+```bash
+npm start
+```
+this will run the server for you on localhost:8888
+6- open your favourite browser on localhost:8888
+7- ENJOY
+
+## To load sample data
 
 To load sample data, run the following command in your terminal:
 
