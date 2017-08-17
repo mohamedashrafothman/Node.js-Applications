@@ -26,7 +26,6 @@ const validateRegister = (req, res, next)=> {
  		if(!result.isEmpty()){
  			var errors = result.array();
 			req.flash('error', errors);
-			console.log(req.body);
 			res.render('register', {
 				title: 'Register',
 				body: req.body,

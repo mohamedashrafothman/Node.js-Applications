@@ -22,7 +22,8 @@ const { catchErrors }  = require('../handlers/errorHandlers');
 			- tags view routes
 ==================================================*/
 router.get('/', storeController.getStores);
-router.get('/stores', storeController.getStores);
+router.get('/stores', catchErrors(storeController.getStores));
+router.get('/stores/page/:page', catchErrors(storeController.getStores));
 router.get('/store/:slug', storeController.getStoreBySlug);
 router.get('/stores/:id/edit', storeController.editStore);
 router.get('/add', authController.isLoggedIn, storeController.addStore);
@@ -60,6 +61,7 @@ router.post('/account/reset/:token',
 );
 router.get('/hearts', authController.isLoggedIn, catchErrors(storeController.getHearts));
 router.post('/reviews/:id', authController.isLoggedIn, catchErrors(reviewController.addReview));
+router.get('/top', catchErrors(storeController.getTopStores));
 /*=============================
 	APIs
 =============================*/

@@ -19,8 +19,21 @@ block content
 								.store__action.store_action--edit
 									a(href="/stores/"+store._id+'/edit')
 										!= h.icon('pencil')
+							if store.reviews
+								.store__action.store__action--count
+									!= h.icon('review')
+									span= store.reviews.length
 						img(src= store.photo ? '/uploads/'+store.photo : '/uploads/store.png')
 						h2.title
 							a(href='/store/'+store.slug) #{store.name}
 					.store__details
 						p= store.description.split(' ').slice(0, 25).join(' ')
+		.pagination
+			.pagination__prev
+				if page > 1
+					a(href=('/stores/page/'+(page - 1))) Prev
+			.pagination__text
+				p Page #{page} of #{pages} - #{count} total results
+			.pagination__next
+				if page < pages
+					a(href=('/stores/page/'+(parseFloat(page) + 1))) Next
