@@ -53,5 +53,6 @@ That will populate 16 stores with 3 authors and 41 reviews. The logins for the a
 
 
 ## Demo
+[Now Thats Delisious][Now Thats Delisious].
 
 [Now Thats Delisious]: https://thats-delicious-cdoxshxxhx.now.sh/
